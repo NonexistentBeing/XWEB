@@ -323,6 +323,16 @@ h6 {
         textarea {
             resize: vertical;
         }
+
+        input[type='submit'] {
+            padding: 1em;
+            width: 16ch;
+            font-weight: 900;
+            color: $background;
+            background-color: $heading;
+            border: none;
+            border-radius: 0.3em;
+        }
     }
 
     &__delimiter {

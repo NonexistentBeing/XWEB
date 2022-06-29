@@ -333,6 +333,15 @@ h6 {
 .page__form textarea {
   resize: vertical;
 }
+.page__form input[type=submit] {
+  padding: 1em;
+  width: 16ch;
+  font-weight: 900;
+  color: #f7f7f7;
+  background-color: #0b0b15;
+  border: none;
+  border-radius: 0.3em;
+}
 .page__delimiter {
   margin: 2em 0;
   border: 0;
