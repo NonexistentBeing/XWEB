@@ -1,0 +1,83 @@
+@use 'constants' as *;
+@use 'mixins';
+
+.border--round {
+    border-radius: 0.3em;
+}
+
+.text {
+    &--bold {
+        font-weight: 900;
+    }
+
+    &--small {
+        font-size: 0.9em;
+    }
+    &--big {
+        font-size: 2em;
+    }
+
+    &--biggest {
+        font-size: 6em;
+    }
+
+    &--no-line {
+        line-height: normal;
+    }
+}
+
+.pad {
+    &--side {
+        padding-left: 10vw;
+        padding-right: 10vw;
+        @include mixins.tablet {
+            padding-left: 4vw;
+            padding-right: 4vw;
+        }
+    }
+}
+
+.mar {
+    &--none {
+        margin: 0;
+    }
+
+    &--double {
+        margin-bottom: 2em;
+    }
+}
+
+.pad {
+    &--bottom {
+        padding-bottom: 1em;
+    }
+    &--none {
+        padding: 0;
+    }
+
+    &--double {
+        padding-bottom: 2em;
+    }
+}
+
+.no-bullet {
+    list-style-type: none;
+    padding: 0;
+}
+
+.employment {
+    margin: 0.3em 0;
+    text-align: center;
+    width: 9ch;
+    padding: 0.3em;
+    color: white;
+    border-radius: 0.3em;
+
+    &--full-time {
+        background-color: $main;
+    }
+
+    &--part-time {
+        background-color: $text;
+    }
+}

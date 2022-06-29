@@ -1,0 +1,41 @@
+@mixin mobile {
+    @media screen and (max-width: 560px) {
+        @content;
+    }
+}
+
+@mixin mobile-wide {
+    @media screen and (max-width: 960px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin variable($width) {
+    @media screen and (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin media($full, $mobileW, $mobile) {
+    @if ($full) {
+        @content ($full);
+    }
+
+    @if ($mobileW) {
+        @include mobile-wide {
+            @content ($mobileW);
+        }
+    }
+
+    @if ($mobile) {
+        @include mobile {
+            @content ($mobile);
+        }
+    }
+}

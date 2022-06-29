@@ -1,0 +1,392 @@
+@use './constants' as *;
+@use './mixins';
+@use './util';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,400;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+img {
+    display: block;
+}
+
+section {
+    padding: 1em 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    color: $text;
+    background-color: $background;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $heading;
+    font-weight: 900;
+}
+
+.h2 {
+    &--no__margin {
+        margin-top: 0;
+    }
+
+    &--circle {
+        position: relative;
+        z-index: 2;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba($main, 40%);
+            width: 35px;
+            height: 35px;
+            transform: translate(-25%, -15%);
+            border-radius: 100%;
+            z-index: -1;
+        }
+    }
+}
+
+.page {
+    &__hero {
+        overflow: hidden;
+        align-items: center;
+        display: flex;
+        margin: 0;
+        justify-content: space-between;
+
+        &__left {
+            padding: 2em 0;
+            flex-basis: 55ch;
+        }
+
+        &__right {
+            position: relative;
+
+            @include mixins.variable(1000px) {
+                display: none;
+            }
+
+            &::before {
+                $width: 60vw;
+                position: absolute;
+                border-radius: 100%;
+                top: 20%;
+                right: 0;
+                height: $width;
+                width: $width;
+                background-color: rgba($main, 40%);
+                content: '';
+                z-index: -1;
+                transform: translate(20vw, -50%);
+            }
+        }
+    }
+
+    &__heading {
+        @extend .text--biggest;
+        @extend .text--bold;
+        line-height: 1;
+        margin: 0;
+        color: $heading;
+
+        &--before {
+            margin: 0;
+        }
+
+        &--after {
+            @extend .text--big;
+            @extend .text--bold;
+            color: $main;
+            line-height: 1;
+            margin: 0;
+            margin-bottom: 1em;
+        }
+    }
+
+    &__nav {
+        @extend .mar--double;
+
+        > ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            gap: 1em;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            @include mixins.mobile {
+                > li {
+                    flex-basis: 30%;
+                    flex-grow: 1;
+                }
+
+                > li > a {
+                    text-align: center;
+                    display: block;
+                    width: 100%;
+                    padding: 0.5em;
+                    background-color: $main;
+                    color: $heading;
+                    border-radius: 0.3em;
+                }
+            }
+        }
+
+        &__link {
+            color: $text;
+            text-decoration: none;
+        }
+    }
+
+    &__container {
+        &--figure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            > * {
+                padding: 2em;
+            }
+
+            &__right {
+                flex-basis: 45ch;
+                flex-grow: 1;
+            }
+        }
+
+        &--trophy {
+            @extend .border--round;
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: $background;
+            margin-bottom: 0;
+
+            img {
+                margin-bottom: 1em;
+            }
+        }
+
+        &--iconized {
+            padding: 2em;
+            @extend .border--round;
+            background-color: $background;
+            overflow: hidden;
+
+            img {
+                margin-bottom: 2em;
+            }
+
+            &__icon {
+                position: relative;
+                z-index: 1;
+
+                &::before {
+                    $height: 200px;
+                    position: absolute;
+                    top: -125px;
+                    left: -80px;
+                    content: '';
+                    background: $main;
+                    height: 200px;
+                    width: 200px;
+                    border-radius: 100%;
+                    z-index: -1;
+                }
+            }
+        }
+
+        &--exp {
+            border-radius: 0.3em;
+            padding: 2em;
+            background-color: $container;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+
+            &__left {
+                flex-basis: 300px;
+            }
+
+            &__right {
+                flex: 1 1 45ch;
+            }
+        }
+
+        &--port {
+            $width: 400px;
+            justify-content: space-between;
+
+            @include mixins.tablet {
+                justify-content: center;
+            }
+
+            &__item {
+                flex-basis: $width;
+
+                h3 {
+                    margin: 0;
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+
+    &__contact {
+        justify-content: space-between;
+        align-items: center;
+
+        &__half {
+            flex-grow: 1;
+            flex-basis: 400px;
+        }
+
+        &__address {
+            color: $heading;
+            font-size: 0.9em;
+            > div {
+                padding: 1em 0;
+                display: flex;
+                align-items: center;
+
+                > img {
+                    flex-basis: 60px;
+                    flex-shrink: 0;
+                }
+
+                > div {
+                    font-style: normal;
+                    font-weight: 900;
+                }
+            }
+        }
+    }
+
+    &__footer {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__icons {
+            display: flex;
+            gap: 1em;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        gap: 1em;
+        margin-bottom: 2em;
+
+        &__flex {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+
+        &__half {
+            flex-basis: 30ch;
+            flex-grow: 1;
+        }
+
+        input,
+        textarea {
+            font-family: inherit;
+            padding: 1.3em;
+            border: solid 1px $border;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    &__delimiter {
+        $height: 5px;
+        margin: 2em 0;
+        border: 0;
+        display: block;
+        height: $height;
+        background-image: url('/img/border-dark.png');
+        background-size: auto $height;
+    }
+
+    &__figure {
+        margin: 0;
+        text-align: center;
+
+        img {
+            background-color: $main;
+            display: inline-block;
+            clip-path: circle(50%);
+            margin-bottom: 1em;
+        }
+
+        figcaption {
+            @extend .text--big;
+            @extend .text--bold;
+            color: $heading;
+            margin-bottom: 0;
+        }
+
+        p {
+            color: $main;
+            margin: 0;
+        }
+    }
+
+    &__map {
+        width: 100%;
+        border-radius: 0.3em;
+        border: 3px solid white;
+    }
+}
+
+.flex-container {
+    &--column {
+        gap: 2em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2em;
+    }
+
+    &__item {
+        flex: 1 1 400px;
+    }
+}
+
+.section {
+    &--darker {
+        background-color: $container;
+    }
+}
